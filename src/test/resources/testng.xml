@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SuiteName">
-    <!--<test name="testSearchRequest" preserve-order="true" >-->
-        <!--<classes>-->
-            <!--<class name="MainTest">-->
-                <!--&lt;!&ndash;<methods>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="testMethod"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;</methods>&ndash;&gt;-->
-            <!--</class>-->
-        <!--</classes>-->
-    <!--</test>-->
-    <!--<test name="invalidDataSearchTest" preserve-order="true" >-->
-        <!--<classes>-->
-            <!--<class name="InvalidDataSearchTest">-->
-                <!--<methods>-->
-                    <!--<include name="testMethod"/>-->
-                <!--</methods>-->
-            <!--</class>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="testSearchRequest" preserve-order="true" >
+        <classes>
+            <class name="MainTest">
+                <methods>
+                    <include name="testMethod"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="invalidDataSearchTest" preserve-order="true" >
+        <classes>
+            <class name="InvalidDataSearchTest">
+                <methods>
+                    <include name="testMethod"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test name="rusLangNotContainsOnBlock" preserve-order="true" >
         <classes>
             <class name="RusLangNotContains">
