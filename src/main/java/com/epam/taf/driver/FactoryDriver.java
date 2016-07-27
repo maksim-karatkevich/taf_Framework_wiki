@@ -2,11 +2,14 @@ package com.epam.taf.driver;
 
 
 import com.epam.taf.property.PropertyProvider;
+import com.epam.taf.utils.WebDriverEventsCustomListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 
 
 public class FactoryDriver {
@@ -39,7 +42,7 @@ public class FactoryDriver {
         if (driver == null) {
             getActualDriver();
         }
-        return driver;
+        return new EventFiringWebDriver(driver).register(new WebDriverEventsCustomListener(log));
     }
 
     public static void closeDriver() {
@@ -49,7 +52,9 @@ public class FactoryDriver {
     }
 
     private static WebDriver createFirefoxDriver() {
+
         return new FirefoxDriver();
+
     }
 
     private static WebDriver createChromeDriver() {
