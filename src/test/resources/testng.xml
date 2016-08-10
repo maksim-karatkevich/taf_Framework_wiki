@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SuiteName">
-    <test name="testSearchRequest" preserve-order="true" >
+<suite name="SuiteName" verbose="1" parallel="tests" thread-count="3">
+
+
+    <test name="testSearchRequest" verbose="1">
         <classes>
             <class name="MainTest">
                 <methods>
@@ -10,7 +12,7 @@
             </class>
         </classes>
     </test>
-    <test name="invalidDataSearchTest" preserve-order="true" >
+    <test name="invalidDataSearchTest" verbose="1" >
         <classes>
             <class name="InvalidDataSearchTest">
                 <methods>
@@ -19,7 +21,7 @@
             </class>
         </classes>
     </test>
-    <test name="rusLangNotContainsOnBlock" preserve-order="true" >
+    <test name="rusLangNotContainsOnBlock"  verbose="1">
         <classes>
             <class name="RusLangNotContains">
             </class>

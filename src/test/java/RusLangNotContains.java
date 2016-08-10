@@ -10,5 +10,6 @@ public class RusLangNotContains extends BaseTest {
     @Test
     public void rusLangNotContainsOnBlock() {
         Assert.assertTrue(homePageSteps.findRusLangOnBlock());
+
     }
 }

@@ -4,12 +4,12 @@ import org.testng.annotations.*;
 import testUtils.BaseTest;
 import testUtils.DataProviders;
 
-@Listeners (ScreenshotExecutor.class)
+@Listeners(ScreenshotExecutor.class)
 public class MainTest extends BaseTest {
 
 
     @Test(dataProvider = "correctSearchData", dataProviderClass = DataProviders.class)
-    public void testSearchRequest(String language, String request){
+    public void testSearchRequest(String language, String request) {
         String articleTitle = homePageSteps
                 .chooseLanguageOnDropdownMenu(language)
                 .makeSearchRequest(request)

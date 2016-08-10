@@ -58,7 +58,7 @@ public class WebDriverEventsCustomListener implements WebDriverEventListener{
     }
 
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        logger.debug("<<<<<<<<<<<<< Attempt to click on element [" + element + "].>>>>>>>>>>>>>>>>>>>");
+        logger.debug("<<<<<<<<<<<<< Attempt to click on element [" + element.toString().split("->")[0] + "].>>>>>>>>>>>>>>>>>>>");
     }
 
     public void afterClickOn(WebElement element, WebDriver driver) {

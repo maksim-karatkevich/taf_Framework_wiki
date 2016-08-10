@@ -9,7 +9,7 @@ import testUtils.DataProviders;
 public class InvalidDataSearchTest extends BaseTest {
 
     @Test(dataProvider= "incorrectData", dataProviderClass = DataProviders.class)
-    public void invalidDataSearchTest(String language, String request, String response){
+    public void invalidDataSearchTest(String language, String request, String response) {
         Assert.assertEquals(homePageSteps
                 .chooseLanguageOnDropdownMenu(language)
                 .makeSearchRequest(request)

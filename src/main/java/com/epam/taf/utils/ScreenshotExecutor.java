@@ -38,5 +38,4 @@ public class ScreenshotExecutor extends TestListenerAdapter{
         }
         return path;
     }
-
 }

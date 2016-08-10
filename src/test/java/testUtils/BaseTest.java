@@ -14,10 +14,10 @@ public class BaseTest {
 
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         this.driver = FactoryDriver.getInstance();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        this.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        this.driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         this.homePageSteps = new HomePageSteps(driver);
         this.homePageSteps.openHomePage();
     }
@@ -28,6 +28,5 @@ public class BaseTest {
         this.driver = null;
         this.homePageSteps = null;
     }
-
 
 }

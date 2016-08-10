@@ -2,5 +2,5 @@ package com.epam.taf.driver;
 
 
 public enum BrowserType {
-    CHROME, FIREFOX
+    CHROME, FIREFOX, REMOTE_DRIVER
 }
