@@ -29,7 +29,6 @@ public class HomePageSteps extends AbstractSteps {
         log.info("choose language - " + language);
         HomePage homePage = new HomePage(driver);
         homePage.chooseLanguage(language);
-
         return this;
     }
 
@@ -46,7 +45,7 @@ public class HomePageSteps extends AbstractSteps {
         HomePage homePage = new HomePage(driver);
         List<WebElement> list = homePage.getLanguages();
         for (WebElement element : list) {
-            if(element.getAttribute("lang").equals("ru")){
+            if (element.getAttribute("lang").equals("ru")) {
                 return false;
             }
         }

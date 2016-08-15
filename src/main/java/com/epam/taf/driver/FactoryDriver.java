@@ -12,16 +12,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
 public class FactoryDriver {
     private static final Logger log = LogManager.getRootLogger();
-//    private static WebDriver driver;
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-
 
     private FactoryDriver() {
     }
@@ -36,26 +33,24 @@ public class FactoryDriver {
                 log.info("chrome driver created");
                 break;
             case FIREFOX:
-                driver = createFirefoxDriver();
-                log.info("firefox driver created");
-                break;
+                log.info("unblockable firefox driver created");
+                return new UnblockableFirefoxDriver();
             case REMOTE_DRIVER:
                 driver = createRemoteDriver();
-
             default:
-                driver = createFirefoxDriver();
-                log.info(" default: firefox driver created");
+                driver = new UnblockableFirefoxDriver();
+                log.info("default: firefox driver created");
         }
         return driver;
     }
 
     private static WebDriver createRemoteDriver() {
         DesiredCapabilities dr = DesiredCapabilities.firefox();
-        dr.setPlatform(Platform.MAC);
-        dr.setBrowserName("firefox");
+        dr.setPlatform(Platform.LINUX);
+        dr.setBrowserName("chrome");
         log.info("Capabilities configured");
         try {
-            return new RemoteWebDriver(new URL("http://10.6.92.75:8080/wd/hub"), dr);
+            return new RemoteWebDriver(new URL("http://192.168.99.102:4444/wd/hub"), dr);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
@@ -70,13 +65,14 @@ public class FactoryDriver {
     }
 
     public static void closeDriver() {
-        driver.get().close();
         driver.get().quit();
         driver.remove();
         log.info("driver has been closed");
     }
 
-    private static WebDriver createFirefoxDriver() { return new FirefoxDriver(); }
+    private static WebDriver createFirefoxDriver() {
+        return new FirefoxDriver();
+    }
 
     private static WebDriver createChromeDriver() {
         return new ChromeDriver();

@@ -28,7 +28,7 @@ public class ScreenshotExecutor extends TestListenerAdapter{
         String path;
         try {
             File source = ((TakesScreenshot)FactoryDriver.getInstance()).getScreenshotAs(OutputType.FILE);
-            path = "./target/screenshots/"+ pngCount + PNG;
+            path = "./target/screenshots/"+ "errorImg" + pngCount + PNG;
             pngCount++;
             FileUtils.copyFile(source, new File(path));
         }

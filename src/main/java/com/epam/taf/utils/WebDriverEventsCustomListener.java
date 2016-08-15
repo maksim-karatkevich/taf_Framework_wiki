@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 
-public class WebDriverEventsCustomListener implements WebDriverEventListener{
+public class WebDriverEventsCustomListener implements WebDriverEventListener {
 
     private Logger logger;
 
@@ -15,10 +15,8 @@ public class WebDriverEventsCustomListener implements WebDriverEventListener{
         this.logger = logger;
     }
 
-
-
     public void beforeNavigateTo(String url, WebDriver driver) {
-        logger.debug(">>>>>>>>>>>>>>>>> Attempt to navigate to url: " + url + ". <<<<<<<<<<<<<<<<<");
+        logger.debug("Attempt to navigate to url: " + url);
     }
 
     public void afterNavigateTo(String url, WebDriver driver) {
@@ -41,28 +39,24 @@ public class WebDriverEventsCustomListener implements WebDriverEventListener{
         logger.debug("Navigation forward was successful.");
     }
 
-    public void beforeNavigateRefresh(WebDriver webDriver) {
+    public void beforeNavigateRefresh(WebDriver webDriver) { }
 
-    }
-
-    public void afterNavigateRefresh(WebDriver webDriver) {
-
-    }
+    public void afterNavigateRefresh(WebDriver webDriver) { }
 
     public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-        logger.info("<<<<<<<<< Attempt to find element by " + by + ".>>>>>>>>>>>>>>>");
+        logger.info("Attempt to find element by " + by);
     }
 
     public void afterFindBy(By by, WebElement element, WebDriver driver) {
-        logger.info("<<<<<<<< Find element by " + by + " was performed.>>>>>>>>>>>>>>>");
+        logger.info("Find element by " + by);
     }
 
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        logger.debug("<<<<<<<<<<<<< Attempt to click on element [" + element.toString().split("->")[0] + "].>>>>>>>>>>>>>>>>>>>");
+        logger.debug("Attempt to click on element [" + element.toString().split("->")[0]);
     }
 
     public void afterClickOn(WebElement element, WebDriver driver) {
-        logger.debug("<<<<<<<<<<<<<<<<<<<<<< Click on element [" + element + "] was performed. >>>>>>>>>>>>>>>");
+        logger.debug("Click on element [" + element + "] was performed.");
     }
 
     public void beforeChangeValueOf(WebElement element, WebDriver driver) {
