@@ -32,7 +32,7 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.7.3/aspectjweaver-1.7.3.jar"
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/main/resources/${suite}</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${suite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemProperties>
                         <browser>${browser}</browser>
