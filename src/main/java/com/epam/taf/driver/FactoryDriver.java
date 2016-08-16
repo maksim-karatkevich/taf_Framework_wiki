@@ -6,8 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -58,7 +56,7 @@ public class FactoryDriver {
         if (temp == null) {
             temp = "firefox";
         }
-        dr.setBrowserName(temp);
+        dr.setBrowserName(temp.toLowerCase());
 
         log.info("Capabilities configured");
         try {
@@ -82,13 +80,13 @@ public class FactoryDriver {
         log.info("driver has been closed");
     }
 
-    private static WebDriver createFirefoxDriver() {
-        return new FirefoxDriver();
-    }
-
-    private static WebDriver createChromeDriver() {
-        return new ChromeDriver();
-    }
+//    private static WebDriver createFirefoxDriver() {
+//        return new FirefoxDriver();
+//    }
+//
+//    private static WebDriver createChromeDriver() {
+//        return new ChromeDriver();
+//    }
 
     public static String getTypeOfBrowser() {
         return System.getProperty("browser");
