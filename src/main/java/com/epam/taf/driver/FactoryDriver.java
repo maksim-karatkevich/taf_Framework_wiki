@@ -1,7 +1,6 @@
 package com.epam.taf.driver;
 
 
-import com.epam.taf.property.PropertyProvider;
 import com.epam.taf.utils.WebDriverEventsCustomListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,7 +19,7 @@ import java.net.URL;
 public class FactoryDriver {
     private static final Logger log = LogManager.getRootLogger();
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private static String browserType = "";
+    private static BrowserType type;
 
     private FactoryDriver() {
     }
@@ -27,24 +27,25 @@ public class FactoryDriver {
     private static WebDriver getActualDriver() {
         WebDriver driver;
 
-        BrowserType type = BrowserType.valueOf(PropertyProvider.getProperty("browser"));
-        try {
-            browserType = System.getProperty("browser").toUpperCase();
-        } catch (NullPointerException ex) {
-            log.error("Err read browser");
-            browserType = "CHROME";
+        String temp = System.getProperty("browser");
+        if (temp == null){
+            log.error("cannot load system property 'browser'. Use default: FIREFOX");
+            temp = "REMOTE_DRIVER";
         }
-        switch (browserType) {
-            case "CHROME":
+        type = BrowserType.valueOf(temp);
+
+        switch (type) {
+            case CHROME:
                 System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
                 driver = createChromeDriver();
                 log.info("chrome driver created");
                 break;
-            case "FIREFOX":
+            case FIREFOX:
                 log.info("unblockable firefox driver created");
                 return new UnblockableFirefoxDriver();
-            case "REMOTE_DRIVER":
+            case REMOTE_DRIVER:
                 driver = createRemoteDriver();
+                break;
             default:
                 driver = new UnblockableFirefoxDriver();
                 log.info("default: firefox driver created");
@@ -58,7 +59,7 @@ public class FactoryDriver {
         dr.setBrowserName("chrome");
         log.info("Capabilities configured");
         try {
-            return new RemoteWebDriver(new URL("http://192.168.99.102:4444/wd/hub"), dr);
+            return new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), dr);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;

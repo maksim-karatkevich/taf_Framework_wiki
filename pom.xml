@@ -28,9 +28,6 @@
                 <inherited>true</inherited>
 
                 <configuration>
-                    <!--<argLine>-->
-                        <!-- -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.7.3/aspectjweaver-1.7.3.jar"-->
-                    <!--</argLine>-->
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/${suite}</suiteXmlFile>
                     </suiteXmlFiles>
