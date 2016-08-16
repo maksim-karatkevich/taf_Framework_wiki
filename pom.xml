@@ -98,6 +98,9 @@
             <version>2.4</version>
         </dependency>
     </dependencies>
+    <!--mvn commands -->
+    <!--mvn -Dsuite=testng.xml -Dbrowser=chrome clean test-->
+    <!--mvn -Dsuite=testng.xml -Dbrowser=firefox clean test-->
 
 
 </project>

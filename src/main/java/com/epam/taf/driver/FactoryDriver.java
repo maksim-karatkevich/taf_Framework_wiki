@@ -26,37 +26,40 @@ public class FactoryDriver {
 
     private static WebDriver getActualDriver() {
         WebDriver driver;
-
-        String temp = System.getProperty("browser");
-        if (temp == null){
-            log.error("cannot load system property 'browser'. Use default: FIREFOX");
-            temp = "REMOTE_DRIVER";
-        }
-        type = BrowserType.valueOf(temp);
-
-        switch (type) {
-            case CHROME:
-                System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
-                driver = createChromeDriver();
-                log.info("chrome driver created");
-                break;
-            case FIREFOX:
-                log.info("unblockable firefox driver created");
-                return new UnblockableFirefoxDriver();
-            case REMOTE_DRIVER:
-                driver = createRemoteDriver();
-                break;
-            default:
-                driver = new UnblockableFirefoxDriver();
-                log.info("default: firefox driver created");
-        }
+        driver = createRemoteDriver();
         return driver;
     }
 
+    /**
+     * old driver factory version
+     *
+     *
+     */
+//        switch (type) {
+//            case CHROME:
+//                System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
+//                driver = createChromeDriver();
+//                log.info("chrome driver created");
+//                break;
+//            case FIREFOX:
+//                log.info("unblockable firefox driver created");
+//                return new UnblockableFirefoxDriver();
+//            case REMOTE_DRIVER:
+//                driver = createRemoteDriver();
+//                break;
+//            default:
+//                driver = new UnblockableFirefoxDriver();
+//                log.info("default: firefox driver created");
+//        }
     private static WebDriver createRemoteDriver() {
         DesiredCapabilities dr = DesiredCapabilities.firefox();
         dr.setPlatform(Platform.LINUX);
-        dr.setBrowserName("chrome");
+        String temp = getTypeOfBrowser();
+        if (temp == null) {
+            temp = "firefox";
+        }
+        dr.setBrowserName(temp);
+
         log.info("Capabilities configured");
         try {
             return new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), dr);
@@ -85,5 +88,9 @@ public class FactoryDriver {
 
     private static WebDriver createChromeDriver() {
         return new ChromeDriver();
+    }
+
+    public static String getTypeOfBrowser() {
+        return System.getProperty("browser");
     }
 }
