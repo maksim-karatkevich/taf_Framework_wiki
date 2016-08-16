@@ -19,23 +19,31 @@ import java.net.URL;
 public class FactoryDriver {
     private static final Logger log = LogManager.getRootLogger();
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    private static String browserType = "";
 
     private FactoryDriver() {
     }
 
     private static WebDriver getActualDriver() {
         WebDriver driver;
+
         BrowserType type = BrowserType.valueOf(PropertyProvider.getProperty("browser"));
-        switch (type) {
-            case CHROME:
+        try {
+            browserType = System.getProperty("browser").toUpperCase();
+        } catch (NullPointerException ex) {
+            log.error("Err read browser");
+            browserType = "CHROME";
+        }
+        switch (browserType) {
+            case "CHROME":
                 System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
                 driver = createChromeDriver();
                 log.info("chrome driver created");
                 break;
-            case FIREFOX:
+            case "FIREFOX":
                 log.info("unblockable firefox driver created");
                 return new UnblockableFirefoxDriver();
-            case REMOTE_DRIVER:
+            case "REMOTE_DRIVER":
                 driver = createRemoteDriver();
             default:
                 driver = new UnblockableFirefoxDriver();
