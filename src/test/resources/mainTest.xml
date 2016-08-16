@@ -6,4 +6,10 @@
             <class name="MainTest"/>
         </classes>
     </test>
+    <test name="Mai2n" verbose="1">
+        <classes>
+            <class name="MainTest"/>
+        </classes>
+    </test>
+
 </suite>

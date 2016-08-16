@@ -17,4 +17,9 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(articleTitle, request, "Expected result is not equal to the actual");
 
     }
+
+    @Test
+    public void rusLangNotContainsOnBlock() {
+        Assert.assertTrue(homePageSteps.findRusLangOnBlock());
+    }
 }

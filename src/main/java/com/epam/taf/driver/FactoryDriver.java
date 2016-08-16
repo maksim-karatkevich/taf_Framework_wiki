@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
@@ -15,8 +16,7 @@ import java.net.URL;
 
 public class FactoryDriver {
     private static final Logger log = LogManager.getRootLogger();
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private static BrowserType type;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private FactoryDriver() {
     }
@@ -24,6 +24,7 @@ public class FactoryDriver {
     private static WebDriver getActualDriver() {
         WebDriver driver;
         driver = createRemoteDriver();
+//        driver = createFirefoxDriver();
         return driver;
     }
 
@@ -79,9 +80,9 @@ public class FactoryDriver {
         log.info("driver has been closed");
     }
 
-//    private static WebDriver createFirefoxDriver() {
-//        return new FirefoxDriver();
-//    }
+    private static WebDriver createFirefoxDriver() {
+        return new FirefoxDriver();
+    }
 //
 //    private static WebDriver createChromeDriver() {
 //        return new ChromeDriver();

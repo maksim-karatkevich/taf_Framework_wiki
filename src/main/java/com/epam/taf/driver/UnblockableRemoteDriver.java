@@ -13,8 +13,7 @@ import java.util.Set;
  * Created by Maksim_Karatkevich on 8/16/2016.
  */
 public class UnblockableRemoteDriver implements WebDriver, TakesScreenshot, JavascriptExecutor {
-//    WebDriver driver = FactoryDriver.getInstance();
-   private static RemoteWebDriver driver ;
+    private static RemoteWebDriver driver;
 
 
     public UnblockableRemoteDriver(URL url, DesiredCapabilities dr) throws MalformedURLException {

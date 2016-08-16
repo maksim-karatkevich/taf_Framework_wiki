@@ -16,4 +16,13 @@ public class InvalidDataSearchTest extends BaseTest {
                 .getNotFoundMassage(), response);
 
     }
+
+    @Test(dataProvider= "incorrectData", dataProviderClass = DataProviders.class)
+    public void invalidDataSearchTest2(String language, String request, String response) {
+        Assert.assertEquals(homePageSteps
+                .chooseLanguageOnDropdownMenu(language)
+                .makeSearchRequest(request)
+                .getNotFoundMassage(), response);
+
+    }
 }
