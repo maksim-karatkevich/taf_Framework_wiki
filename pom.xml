@@ -15,12 +15,11 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12</version>
+                <inherited>true</inherited>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-                <configuration>
+
                     <suiteXmlFiles>
                         <suiteXmlFile>src/main/resources/${suite}</suiteXmlFile>
                     </suiteXmlFiles>
