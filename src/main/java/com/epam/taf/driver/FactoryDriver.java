@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.net.MalformedURLException;
@@ -60,7 +59,7 @@ public class FactoryDriver {
 
         log.info("Capabilities configured");
         try {
-            return new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), dr);
+            return new UnblockableRemoteDriver(new URL("http://192.168.99.100:4444/wd/hub"), dr);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
